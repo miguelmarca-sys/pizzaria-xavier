@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pizzaria Xavier | Nova Xavantina - MT</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              red: '#C82333',
+              darkRed: '#961522',
+              gold: '#E5A93C',
+              dark: '#141414',
+              surface: '#1F1F1F',
+              card: '#292929'
+            }
+          },
+          fontFamily: {
+            title: ['Cinzel', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    html { scroll-behavior: smooth; }
+    .hero-bg {
+      background: linear-gradient(rgba(18, 18, 18, 0.88), rgba(18, 18, 18, 0.95)), 
+                  url('https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1600&q=80') center/cover;
+    }
+  </style>
+</head>
+<body class="bg-brand-dark text-gray-100 font-sans antialiased pb-24 md:pb-12">
+
+  <!-- ================= NAVBAR ================= -->
+  <header class="sticky top-0 z-40 bg-brand-dark/95 backdrop-blur-md border-b border-white/10 shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-3">
+        <div class="w-11 h-11 rounded-full bg-brand-red flex items-center justify-center text-white shadow-lg shadow-brand-red/40">
+          <i class="fa-solid fa-pizza-slice text-xl"></i>
+        </div>
+        <div>
+          <h1 class="text-xl md:text-2xl font-bold font-title tracking-wider text-white">PIZZARIA XAVIER</h1>
+          <p class="text-xs text-brand-gold font-medium tracking-wide">NOVA XAVANTINA - MT</p>
+        </div>
+      </a>
+
+      <div class="hidden md:flex items-center gap-8 text-sm font-semibold tracking-wide">
+        <a href="#cardapio" class="hover:text-brand-gold transition-colors">Cardápio</a>
+        <a href="#diferenciais" class="hover:text-brand-gold transition-colors">Ambiente & Kids</a>
+        <a href="#avaliacoes" class="hover:text-brand-gold transition-colors">Avaliações</a>
+        <a href="#contato" class="hover:text-brand-gold transition-colors">Localização</a>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <!-- Botão Abrir Carrinho -->
+        <button onclick="toggleCart()" class="relative bg-brand-red hover:bg-brand-darkRed text-white px-4 py-2.5 rounded-full flex items-center gap-2 font-semibold shadow-lg transition-all active:scale-95">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span class="hidden sm:inline">Meu Pedido</span>
+          <span id="cart-badge" class="bg-brand-gold text-brand-dark text-xs font-black px-2 py-0.5 rounded-full min-w-[20px] text-center">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= HERO SECTION ================= -->
+  <section class="hero-bg py-16 md:py-24 border-b border-white/5 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="max-w-2xl">
+        <!-- Google Badge 5.0 -->
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-sm mb-6">
+          <span class="flex text-amber-400 text-xs">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          </span>
+          <span class="font-bold text-white">5,0 no Google</span>
+          <span class="text-gray-300 text-xs">• 100% de aprovação</span>
+        </div>
+
+        <h2 class="text-4xl md:text-6xl font-bold font-title leading-tight mb-4 text-white">
+          A Verdadeira Pizza Artesanal em <span class="text-brand-gold">Nova Xavantina</span>
+        </h2>
+        
+        <p class="text-gray-300 text-lg mb-8 leading-relaxed">
+          Massa crocante, recheio generoso e ingredientes de primeira qualidade. Peça no conforto da sua casa ou venha nos visitar com toda a família!
+        </p>
+
+        <!-- Status / Infos Rápidas -->
+        <div class="flex flex-wrap gap-4 text-sm text-gray-300 mb-8">
+          <div class="flex items-center gap-2 bg-black/40 px-3.5 py-2 rounded-lg border border-white/5">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span>Aberto até as <strong>23:00</strong></span>
+          </div>
+          <div class="flex items-center gap-2 bg-black/40 px-3.5 py-2 rounded-lg border border-white/5">
+            <i class="fa-solid fa-truck-fast text-brand-gold"></i>
+            <span>Delivery & No Local</span>
+          </div>
+          <div class="flex items-center gap-2 bg-black/40 px-3.5 py-2 rounded-lg border border-white/5">
+            <i class="fa-solid fa-shapes text-brand-gold"></i>
+            <span>Espaço Kids Arejado</span>
+          </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="#cardapio" class="bg-brand-red hover:bg-brand-darkRed text-white text-center font-bold px-8 py-3.5 rounded-xl shadow-lg shadow-brand-red/30 transition-all flex items-center justify-center gap-2">
+            <i class="fa-solid fa-book-open"></i> Ver Cardápio & Pedir
+          </a>
+          <a href="https://wa.me/5566997152299" target="_blank" class="bg-white/10 hover:bg-white/20 border border-white/20 text-white text-center font-semibold px-6 py-3.5 rounded-xl transition-all flex items-center justify-center gap-2">
+            <i class="fa-brands fa-whatsapp text-emerald-400 text-lg"></i> Falar no WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= DESTAQUES ================= -->
+  <section id="diferenciais" class="py-12 bg-brand-surface border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-brand-card p-6 rounded-2xl border border-white/5 flex items-start gap-4">
+          <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-brand-gold flex items-center justify-center text-2xl flex-shrink-0">
+            <i class="fa-solid fa-child-reaching"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-white text-lg mb-1">Espaço Kids Completo</h3>
+            <p class="text-sm text-gray-400">Ambiente arejado e seguro para as crianças brincarem enquanto os pais aproveitam a noite.</p>
+          </div>
+        </div>
+
+        <div class="bg-brand-card p-6 rounded-2xl border border-white/5 flex items-start gap-4">
+          <div class="w-12 h-12 rounded-xl bg-red-500/10 text-brand-red flex items-center justify-center text-2xl flex-shrink-0">
+            <i class="fa-solid fa-fire-burner"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-white text-lg mb-1">Ingredientes Selecionados</h3>
+            <p class="text-sm text-gray-400">Massa artesanal, queijo derretido no ponto certo e muito capricho em cada fatia.</p>
+          </div>
+        </div>
+
+        <div class="bg-brand-card p-6 rounded-2xl border border-white/5 flex items-start gap-4">
+          <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-2xl flex-shrink-0">
+            <i class="fa-solid fa-motorcycle"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-white text-lg mb-1">Delivery Rápido e Quentinho</h3>
+            <p class="text-sm text-gray-400">Entregamos com agilidade em todo o setor Industrial e bairros de Nova Xavantina.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CARDÁPIO DIGITAL ================= -->
+  <section id="cardapio" class="py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-10">
+        <span class="text-brand-gold font-bold text-sm tracking-widest uppercase">Faça Seu Pedido Online</span>
+        <h2 class="text-3xl md:text-4xl font-title font-bold text-white mt-1">Nosso Cardápio</h2>
+        <p class="text-gray-400 text-sm mt-2">Escolha seus sabores favoritos e clique em adicionar. Finalize direto no WhatsApp!</p>
+      </div>
+
+      <!-- Filtro de Categorias -->
+      <div class="flex items-center justify-center gap-2 overflow-x-auto pb-4 mb-8">
+        <button onclick="filterCategory('todos')" class="cat-btn active bg-brand-red text-white px-5 py-2 rounded-full font-semibold text-sm transition-all whitespace-nowrap" data-cat="todos">Todos</button>
+        <button onclick="filterCategory('tradicionais')" class="cat-btn bg-brand-card text-gray-300 hover:text-white px-5 py-2 rounded-full font-semibold text-sm transition-all whitespace-nowrap" data-cat="tradicionais">Pizzas Tradicionais</button>
+        <button onclick="filterCategory('especiais')" class="cat-btn bg-brand-card text-gray-300 hover:text-white px-5 py-2 rounded-full font-semibold text-sm transition-all whitespace-nowrap" data-cat="especiais">Especiais da Casa</button>
+        <button onclick="filterCategory('doces')" class="cat-btn bg-brand-card text-gray-300 hover:text-white px-5 py-2 rounded-full font-semibold text-sm transition-all whitespace-nowrap" data-cat="doces">Pizzas Doces</button>
+        <button onclick="filterCategory('bebidas')" class="cat-btn bg-brand-card text-gray-300 hover:text-white px-5 py-2 rounded-full font-semibold text-sm transition-all whitespace-nowrap" data-cat="bebidas">Bebidas</button>
+      </div>
+
+      <!-- Grid dos Produtos -->
+      <div id="products-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Renderizado dinamicamente pelo JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= AVALIAÇÕES REAIS (GOOGLE) ================= -->
+  <section id="avaliacoes" class="py-16 bg-brand-surface border-y border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <div class="flex items-center justify-center gap-1 text-amber-400 text-lg mb-2">
+          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+        </div>
+        <h2 class="text-3xl font-title font-bold text-white">O Que Dizem os Clientes</h2>
+        <p class="text-gray-400 text-sm mt-1">Avaliações reais deixadas no Google Maps</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Marjorie -->
+        <div class="bg-brand-card p-6 rounded-2xl border border-white/5 relative">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-full bg-pink-600 flex items-center justify-center font-bold text-white">M</div>
+            <div>
+              <h4 class="font-bold text-white text-sm">Marjorie Maciel</h4>
+              <p class="text-xs text-amber-400">★★★★★ <span class="text-gray-400">• 9 meses atrás</span></p>
+            </div>
+          </div>
+          <p class="text-gray-300 text-sm leading-relaxed">
+            "Gostei muito, fui bem atendida, muito bacana tem um lugar pras crianças brincar, bem arejado o local e a pizza uma delícia estão de parabéns!"
+          </p>
+        </div>
+
+        <!-- Yasmin -->
+        <div class="bg-brand-card p-6 rounded-2xl border border-white/5 relative">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-full bg-purple-600 flex items-center justify-center font-bold text-white">Y</div>
+            <div>
+              <h4 class="font-bold text-white text-sm">Yasmin Victória</h4>
+              <p class="text-xs text-amber-400">★★★★★ <span class="text-gray-400">• 4 meses atrás</span></p>
+            </div>
+          </div>
+          <p class="text-gray-300 text-sm leading-relaxed">
+            "Pedido de Entrega super rápido, a pizza chegou quentinha, bem recheada e maravilhosa. Atendimento impecável!"
+          </p>
+        </div>
+
+        <!-- Maurício -->
+        <div class="bg-brand-card p-6 rounded-2xl border border-white/5 relative">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center font-bold text-white">M</div>
+            <div>
+              <h4 class="font-bold text-white text-sm">Maurício Souza</h4>
+              <p class="text-xs text-amber-400">★★★★★ <span class="text-gray-400">• 9 meses atrás</span></p>
+            </div>
+          </div>
+          <p class="text-gray-300 text-sm leading-relaxed">
+            "Refeição no local excelente. Ambiente agradável, atendimento rápido e a pizza de massa leve e crocante. Recomendo em Nova Xavantina!"
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= LOCALIZAÇÃO & CONTATO ================= -->
+  <section id="contato" class="py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+        <div>
+          <span class="text-brand-gold font-bold text-sm tracking-widest uppercase">Venha Nos Visitar</span>
+          <h2 class="text-3xl font-title font-bold text-white mt-1 mb-6">Onde Estamos</h2>
+
+          <div class="space-y-5 text-gray-300">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center text-brand-gold flex-shrink-0">
+                <i class="fa-solid fa-location-dot text-lg"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-white">Endereço</h4>
+                <p class="text-sm text-gray-400">Av. Min. João Alberto - Setor Industrial</p>
+                <p class="text-sm text-gray-400">Nova Xavantina - MT, 78690-000</p>
+                <p class="text-xs text-brand-gold mt-1">Código Plus: 8JCR+GJ Industrial, Nova Xavantina</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center text-brand-gold flex-shrink-0">
+                <i class="fa-solid fa-clock text-lg"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-white">Horário de Funcionamento</h4>
+                <p class="text-sm text-gray-400">Terça a Domingo • Das 18:30 às 23:00</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center text-brand-gold flex-shrink-0">
+                <i class="fa-solid fa-phone text-lg"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-white">WhatsApp / Telefone</h4>
+                <p class="text-sm text-gray-400">(66) 99715-2299</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-8 flex flex-wrap gap-4">
+            <a href="https://maps.google.com/?q=Pizzaria+Xavier+Nova+Xavantina+MT" target="_blank" class="bg-brand-card hover:bg-white/10 text-white font-semibold px-6 py-3 rounded-xl border border-white/10 transition-all flex items-center gap-2">
+              <i class="fa-solid fa-diamond-turn-right text-brand-gold"></i> Abrir no Google Maps
+            </a>
+            <a href="https://wa.me/5566997152299" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-6 py-3 rounded-xl transition-all flex items-center gap-2">
+              <i class="fa-brands fa-whatsapp"></i> Chamar no WhatsApp
+            </a>
+          </div>
+        </div>
+
+        <div class="bg-brand-card p-6 rounded-3xl border border-white/10 text-center relative overflow-hidden">
+          <div class="w-20 h-20 mx-auto rounded-full bg-brand-red/20 text-brand-red flex items-center justify-center text-3xl mb-4">
+            <i class="fa-solid fa-store"></i>
+          </div>
+          <h3 class="text-xl font-bold font-title text-white mb-2">Pizzaria Xavier</h3>
+          <p class="text-gray-400 text-sm max-w-sm mx-auto mb-6">Traga as crianças para se divertir no nosso parquinho e desfrute de momentos deliciosos em família!</p>
+          <div class="inline-flex items-center gap-2 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+            Aberto Hoje até 23h
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="bg-black/60 border-t border-white/10 py-8 text-center text-xs text-gray-500">
+    <p>© 2026 Pizzaria Xavier - Nova Xavantina - MT. Todos os direitos reservados.</p>
+    <p class="mt-1">Av. Min. João Alberto - Industrial | Pedidos: (66) 99715-2299</p>
+  </footer>
+
+  <!-- ================= MODAL / CARRINHO ================= -->
+  <div id="cart-modal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm hidden flex justify-end transition-opacity">
+    <div class="bg-brand-surface w-full max-w-md h-full flex flex-col border-l border-white/10 shadow-2xl">
+      
+      <!-- Topo do Carrinho -->
+      <div class="p-5 border-b border-white/10 flex items-center justify-between bg-brand-card">
+        <div class="flex items-center gap-3">
+          <i class="fa-solid fa-bag-shopping text-brand-gold text-xl"></i>
+          <h3 class="font-bold text-lg text-white">Seu Pedido</h3>
+        </div>
+        <button onclick="toggleCart()" class="text-gray-400 hover:text-white p-2">
+          <i class="fa-solid fa-xmark text-xl"></i>
+        </button>
+      </div>
+
+      <!-- Lista de Itens -->
+      <div id="cart-items" class="flex-1 overflow-y-auto p-5 space-y-4">
+        <!-- Inseridos via JavaScript -->
+      </div>
+
+      <!-- Formulário de Finalização -->
+      <div class="p-5 bg-brand-card border-t border-white/10 space-y-4 overflow-y-auto max-h-[50vh]">
+        <div class="space-y-3">
+          <div>
+            <label class="block text-xs font-semibold text-gray-300 mb-1">Seu Nome *</label>
+            <input type="text" id="cust-name" placeholder="Ex: Marjorie Maciel" class="w-full bg-brand-dark border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-brand-gold">
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-gray-300 mb-1">Tipo de Pedido</label>
+            <div class="grid grid-cols-2 gap-2">
+              <label class="flex items-center gap-2 bg-brand-dark p-2.5 rounded-lg border border-white/10 cursor-pointer text-xs">
+                <input type="radio" name="orderType" value="Entrega" checked onchange="toggleDeliveryField(true)">
+                <span>🛵 Entrega</span>
+              </label>
+              <label class="flex items-center gap-2 bg-brand-dark p-2.5 rounded-lg border border-white/10 cursor-pointer text-xs">
+                <input type="radio" name="orderType" value="Mesa/Retirada" onchange="toggleDeliveryField(false)">
+                <span>🍽️ No Local / Balcão</span>
+              </label>
+            </div>
+          </div>
+
+          <div id="address-field">
+            <label class="block text-xs font-semibold text-gray-300 mb-1">Endereço de Entrega *</label>
+            <input type="text" id="cust-address" placeholder="Rua, número, bairro e referência" class="w-full bg-brand-dark border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-brand-gold">
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-gray-300 mb-1">Forma de Pagamento</label>
+            <select id="cust-payment" class="w-full bg-brand-dark border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-brand-gold">
+              <option value="PIX">PIX</option>
+              <option value="Cartão (Crédito/Débito)">Cartão de Crédito/Débito</option>
+              <option value="Dinheiro">Dinheiro</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-gray-300 mb-1">Observações (opcional)</label>
+            <input type="text" id="cust-obs" placeholder="Ex: sem cebola, troco para 100, etc." class="w-full bg-brand-dark border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-brand-gold">
+          </div>
+        </div>
+
+        <!-- Total -->
+        <div class="pt-3 border-t border-white/10 flex justify-between items-center">
+          <span class="text-sm font-semibold text-gray-300">Total do Pedido:</span>
+          <span id="cart-total" class="text-2xl font-bold text-brand-gold">R$ 0,00</span>
+        </div>
+
+        <!-- Botão WhatsApp -->
+        <button onclick="sendOrderToWhatsApp()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 rounded-xl shadow-lg flex items-center justify-center gap-2 text-base transition-all">
+          <i class="fa-brands fa-whatsapp text-xl"></i> Enviar Pedido via WhatsApp
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Botão Flutuante Mobile -->
+  <div class="fixed bottom-4 left-4 right-4 md:hidden z-30">
+    <button onclick="toggleCart()" class="w-full bg-brand-red text-white py-3.5 px-6 rounded-2xl font-bold shadow-2xl flex items-center justify-between border border-white/20">
+      <div class="flex items-center gap-3">
+        <i class="fa-solid fa-cart-shopping text-lg"></i>
+        <span>Ver Meu Pedido (<span id="cart-btn-qty">0</span>)</span>
+      </div>
+      <span id="cart-btn-total" class="font-extrabold text-brand-gold">R$ 0,00</span>
+    </button>
+  </div>
+
+  <!-- ================= JAVASCRIPT ================= -->
+  <script>
+    const products = [
+      {
+        id: 1,
+        category: 'tradicionais',
+        name: 'Pizza Calabresa Especial',
+        desc: 'Massa artesanal, molho de tomate, fatias de calabresa defumada, cebola e azeitonas pretas.',
+        price: 49.90,
+        img: 'https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?auto=format&fit=crop&w=600&q=80'
+      },
+      {
+        id: 2,
+        category: 'tradicionais',
+        name: 'Mussarela Tradicional',
+        desc: 'Muito queijo mussarela derretido, rodelas de tomate fresco e toque especial de orégano.',
+        price: 45.00,
+        img: 'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=600&q=80'
+      },
+      {
+        id: 3,
+        category: 'especiais',
+        name: 'Moda da Casa Xavier',
+        desc: 'Frango desfiado temperado, bacon crocante, palmito, milho verde e requeijão cremoso.',
+        price: 58.00,
+        img: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=600&q=80'
+      },
+      {
+        id: 4,
+        category: 'especiais',
+        name: 'Quatro Queijos Nobres',
+        desc: 'Combinação harmoniosa de mussarela, provolone defumado, gorgonzola e catupiry original.',
+        price: 56.00,
+        img: 'https://images.unsplash.com/photo-1541745537411-b8046dc6d66c?auto=format&fit=crop&w=600&q=80'
+      },
+      {
+        id: 5,
+        category: 'tradicionais',
+        name: 'Portuguesa Completa',
+        desc: 'Presunto magro em cubos, mussarela, ovos cozidos, ervilhas, cebola e azeitonas.',
+        price: 52.00,
+        img: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=600&q=80'
+      },
+      {
+        id: 6,
+        category: 'doces',
+        name: 'Chocolate com Morango',
+        desc: 'Base de chocolate ao leite cremosa coberta com fatias de morangos frescos e raspas.',
+        price: 48.00,
+        img: 'https://images.unsplash.com/photo-1617470702892-e01504297e84?auto=format&fit=crop&w=600&q=80'
+      },
+      {
+        id: 7,
+        category: 'doces',
+        name: 'Sensação Prestígio',
+        desc: 'Chocolate meio amargo com coco ralado fresco tostado e fios de leite condensado.',
+        price: 46.00,
+        img: 'https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?auto=format&fit=crop&w=600&q=80'
+      },
+      {
+        id: 8,
+        category: 'bebidas',
+        name: 'Coca-Cola 2 Litros',
+        desc: 'Garrafa de 2L gelada e refrescante para acompanhar sua pizza.',
+        price: 14.00,
+        img: 'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&fit=crop&w=600&q=80'
+      },
+      {
+        id: 9,
+        category: 'bebidas',
+        name: 'Guaraná Antarctica 2L',
+        desc: 'O sabor autêntico do Brasil, garrafa de 2 litros bem gelada.',
+        price: 13.00,
+        img: 'https://images.unsplash.com/photo-1629203851122-3726ecdf080e?auto=format&fit=crop&w=600&q=80'
+      }
+    ];
+
+    let cart = [];
+
+    function renderMenu(category = 'todos') {
+      const container = document.getElementById('products-grid');
+      const filtered = category === 'todos' ? products : products.filter(p => p.category === category);
+
+      container.innerHTML = filtered.map(item => `
+        <div class="bg-brand-card rounded-2xl overflow-hidden border border-white/5 hover:border-brand-gold/30 transition-all flex flex-col group">
+          <div class="h-48 overflow-hidden relative">
+            <img src="${item.img}" alt="${item.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            <div class="absolute bottom-3 right-3 bg-brand-dark/90 backdrop-blur-md px-3 py-1 rounded-full text-brand-gold font-bold text-sm border border-brand-gold/30">
+              R$ ${item.price.toFixed(2).replace('.', ',')}
+            </div>
+          </div>
+          <div class="p-5 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="font-bold text-lg text-white mb-1.5">${item.name}</h3>
+              <p class="text-xs text-gray-400 line-clamp-2 leading-relaxed mb-4">${item.desc}</p>
+            </div>
+            <button onclick="addToCart(${item.id})" class="w-full bg-brand-red hover:bg-brand-darkRed text-white py-2.5 rounded-xl font-semibold text-sm transition-colors flex items-center justify-center gap-2 active:scale-95">
+              <i class="fa-solid fa-plus text-xs"></i> Adicionar ao Pedido
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function filterCategory(cat) {
+      document.querySelectorAll('.cat-btn').forEach(btn => {
+        if(btn.dataset.cat === cat) {
+          btn.classList.add('bg-brand-red', 'text-white');
+          btn.classList.remove('bg-brand-card', 'text-gray-300');
+        } else {
+          btn.classList.remove('bg-brand-red', 'text-white');
+          btn.classList.add('bg-brand-card', 'text-gray-300');
+        }
+      });
+      renderMenu(cat);
+    }
+
+    function addToCart(productId) {
+      const prod = products.find(p => p.id === productId);
+      const existing = cart.find(c => c.id === productId);
+
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cart.push({ ...prod, qty: 1 });
+      }
+
+      updateCart();
+    }
+
+    function changeQty(productId, delta) {
+      const item = cart.find(c => c.id === productId);
+      if (!item) return;
+
+      item.qty += delta;
+      if (item.qty <= 0) {
+        cart = cart.filter(c => c.id !== productId);
+      }
+      updateCart();
+    }
+
+    function updateCart() {
+      const badge = document.getElementById('cart-badge');
+      const btnQty = document.getElementById('cart-btn-qty');
+      const btnTotal = document.getElementById('cart-btn-total');
+      const cartItems = document.getElementById('cart-items');
+      const cartTotal = document.getElementById('cart-total');
+
+      const totalQty = cart.reduce((acc, cur) => acc + cur.qty, 0);
+      const totalPrice = cart.reduce((acc, cur) => acc + (cur.qty * cur.price), 0);
+
+      badge.innerText = totalQty;
+      btnQty.innerText = totalQty;
+      btnTotal.innerText = `R$ ${totalPrice.toFixed(2).replace('.', ',')}`;
+      cartTotal.innerText = `R$ ${totalPrice.toFixed(2).replace('.', ',')}`;
+
+      if (cart.length === 0) {
+        cartItems.innerHTML = `
+          <div class="h-full flex flex-col items-center justify-center text-center py-12 text-gray-500">
+            <i class="fa-solid fa-basket-shopping text-5xl mb-3 opacity-40"></i>
+            <p class="text-sm">Seu carrinho está vazio.</p>
+            <p class="text-xs text-gray-600 mt-1">Adicione pizzas saborosas ao pedido!</p>
+          </div>
+        `;
+        return;
+      }
+
+      cartItems.innerHTML = cart.map(item => `
+        <div class="flex items-center justify-between gap-3 bg-brand-dark p-3 rounded-xl border border-white/5">
+          <div class="flex-1 min-w-0">
+            <h4 class="font-bold text-sm text-white truncate">${item.name}</h4>
+            <span class="text-xs text-brand-gold font-medium">R$ ${(item.price * item.qty).toFixed(2).replace('.', ',')}</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <button onclick="changeQty(${item.id}, -1)" class="w-7 h-7 rounded-lg bg-white/10 hover:bg-white/20 text-white flex items-center justify-center text-xs">
+              <i class="fa-solid fa-minus"></i>
+            </button>
+            <span class="text-sm font-bold text-white w-5 text-center">${item.qty}</span>
+            <button onclick="changeQty(${item.id}, 1)" class="w-7 h-7 rounded-lg bg-brand-red hover:bg-brand-darkRed text-white flex items-center justify-center text-xs">
+              <i class="fa-solid fa-plus"></i>
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function toggleCart() {
+      const modal = document.getElementById('cart-modal');
+      modal.classList.toggle('hidden');
+    }
+
+    function toggleDeliveryField(isDelivery) {
+      const addr = document.getElementById('address-field');
+      if (isDelivery) {
+        addr.classList.remove('hidden');
+      } else {
+        addr.classList.add('hidden');
+      }
+    }
+
+    function sendOrderToWhatsApp() {
+      if (cart.length === 0) {
+        alert("Seu carrinho está vazio! Selecione ao menos um produto.");
+        return;
+      }
+
+      const name = document.getElementById('cust-name').value.trim();
+      const orderType = document.querySelector('input[name="orderType"]:checked').value;
+      const address = document.getElementById('cust-address').value.trim();
+      const payment = document.getElementById('cust-payment').value;
+      const obs = document.getElementById('cust-obs').value.trim();
+
+      if (!name) {
+        alert("Por favor, informe seu nome para identificação.");
+        return;
+      }
+
+      if (orderType === 'Entrega' && !address) {
+        alert("Por favor, digite seu endereço completo para entrega.");
+        return;
+      }
+
+      const total = cart.reduce((acc, cur) => acc + (cur.qty * cur.price), 0);
+
+      let msg = `🍕 *NOVO PEDIDO - PIZZARIA XAVIER* 🍕\n`;
+      msg += `--------------------------------------\n`;
+      msg += `👤 *Cliente:* ${name}\n`;
+      msg += `📍 *Tipo:* ${orderType}\n`;
+      if (orderType === 'Entrega') {
+        msg += `🏠 *Endereço:* ${address}\n`;
+      }
+      msg += `💳 *Pagamento:* ${payment}\n`;
+      if (obs) {
+        msg += `📝 *Observação:* ${obs}\n`;
+      }
+      msg += `--------------------------------------\n`;
+      msg += `*ITENS DO PEDIDO:*\n`;
+
+      cart.forEach(item => {
+        msg += `▪ ${item.qty}x ${item.name} - R$ ${(item.price * item.qty).toFixed(2).replace('.', ',')}\n`;
+      });
+
+      msg += `--------------------------------------\n`;
+      msg += `💰 *TOTAL: R$ ${total.toFixed(2).replace('.', ',')}*\n`;
+      msg += `--------------------------------------\n`;
+      msg += `_Pedido gerado pelo site oficial da Pizzaria Xavier._`;
+
+      const whatsappNumber = "5566997152299";
+      const encodedMsg = encodeURIComponent(msg);
+      const url = `https://wa.me/${whatsappNumber}?text=${encodedMsg}`;
+
+      window.open(url, '_blank');
+    }
+
+    // Inicialização
+    renderMenu();
+    updateCart();
+  </script>
+</body>
+</html>
